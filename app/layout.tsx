@@ -6,19 +6,19 @@ import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
   title: {
-    default: "chronark.com",
-    template: "%s | chronark.com",
+    default: "Hudson's Portfolio",
+    template: "%s | Hudson's Portfolio",
   },
-  description: "Co-founder of unkey.dev and founder of planetfall.io",
+  description: "Founder of SketchCode & Skynet",
   openGraph: {
-    title: "chronark.com",
+    title: "Hudson's Portfolio",
     description:
-      "Co-founder of unkey.dev and founder of planetfall.io",
-    url: "https://chronark.com",
-    siteName: "chronark.com",
+      "Founder of SketchCode & Skynet",
+    url: "https://sketch-code.vercel.app/",
+    siteName: "SketchCode",
     images: [
       {
-        url: "https://chronark.com/og.png",
+        url: "/images/Portfolio-Logo.png",
         width: 1920,
         height: 1080,
       },
@@ -36,13 +36,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  twitter: {
-    title: "Chronark",
-    card: "summary_large_image",
-  },
-  icons: {
-    shortcut: "/favicon.png",
   },
 };
 
