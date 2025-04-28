@@ -7,4 +7,5 @@ export interface Project {
   url?: string;
   repository?: string;
   published: boolean;
+  techStack?: string[];
 } 

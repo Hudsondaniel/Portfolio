@@ -6,8 +6,23 @@ import { Article } from "./article";
 import { Redis } from "@upstash/redis";
 import { Eye } from "lucide-react";
 import { getAllProjects } from "../../lib/mdx";
+import { FaReact, FaNodeJs, FaJs, FaDatabase } from "react-icons/fa";
+import { SiThreedotjs, SiTypescript, SiExpress, SiGnubash, SiBlender, SiMicroeditor, SiGreensock } from "react-icons/si";
 
 const redis = Redis.fromEnv();
+
+const techIconMap: Record<string, JSX.Element> = {
+  react: <FaReact className="w-6 h-6 text-cyan-400" title="React" />,
+  threejs: <SiThreedotjs className="w-6 h-6 text-white" title="Three.js" />,
+  typescript: <SiTypescript className="w-6 h-6 text-blue-500" title="TypeScript" />,
+  javascript: <FaJs className="w-6 h-6 text-yellow-400" title="JavaScript" />,
+  nodejs: <FaNodeJs className="w-6 h-6 text-green-600" title="Node.js" />,
+  monaco: <SiMicroeditor className="w-6 h-6 text-blue-400" title="Monaco" />,
+  gsap: <SiGreensock className="w-6 h-6 text-green-500" title="GSAP" />,
+  zustand: <FaDatabase className="w-6 h-6 text-zinc-400" title="Zustand" />,
+  express: <SiExpress className="w-6 h-6 text-gray-400" title="Express" />,
+  blender: <SiBlender className="w-6 h-6 text-orange-500" title="Blender" />,
+};
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
@@ -21,7 +36,7 @@ export default async function ProjectsPage() {
     return acc;
   }, {} as Record<string, number>);
 
-  const featured = allProjects.find((project) => project.slug === "unkey")!;
+  const featured = allProjects.find((project) => project.slug === "sketchcode")!;
   const top2 = allProjects.find((project) => project.slug === "planetfall")!;
   const top3 = allProjects.find((project) => project.slug === "highstorm")!;
   const sorted = allProjects
@@ -85,6 +100,12 @@ export default async function ProjectsPage() {
                 <p className="mt-4 leading-8 duration-150 text-zinc-400 group-hover:text-zinc-300">
                   {featured.description}
                 </p>
+                <div className="flex flex-wrap gap-2 mt-5">
+                  {featured.techStack?.map((tech: string) => {
+                    const icon = techIconMap[tech.toLowerCase()];
+                    return icon || <FaDatabase className="w-6 h-6 text-zinc-400" title={tech} key={tech} />;
+                  })}
+                </div>
                 <div className="absolute bottom-4 md:bottom-8">
                   <p className="hidden text-zinc-200 hover:text-zinc-50 lg:block">
                     Read more <span aria-hidden="true">&rarr;</span>
