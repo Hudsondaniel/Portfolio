@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "SketchCode",
     images: [
       {
-        url: "/images/Portfolio-Logo.png",
+        url: "/Portfolio-Logo.png",
         width: 1920,
         height: 1080,
       },
@@ -58,10 +58,10 @@ export default function RootLayout({
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
       <head>
         <Analytics />
+        <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body
-        className={`bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
-          }`}
+        className={`bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined}`}
       >
         {children}
       </body>
