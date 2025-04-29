@@ -4,67 +4,68 @@ import localFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
-export const metadata: Metadata = {
-  title: {
-    default: "Hudson's Portfolio",
-    template: "%s | Hudson's Portfolio",
-  },
-  description: "Founder of SketchCode & Skynet",
-  openGraph: {
-    title: "Hudson's Portfolio",
-    description:
-      "Founder of SketchCode & Skynet",
-    url: "https://sketch-code.vercel.app/",
-    siteName: "SketchCode",
-    images: [
-      {
-        url: "/Portfolio-Logo.png",
-        width: 1920,
-        height: 1080,
-      },
-    ],
-    locale: "en-US",
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-};
-
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+	subsets: ["latin"],
+	variable: "--font-inter",
 });
 
 const calSans = localFont({
-  src: "../public/fonts/CalSans-SemiBold.ttf",
-  variable: "--font-calsans",
+	src: "../public/fonts/CalSans-SemiBold.ttf",
+	variable: "--font-calsans",
 });
 
+export const metadata: Metadata = {
+	metadataBase: new URL("https://portfolio-hudson.vercel.app"),
+	title: {
+		default: "Hudson's Portfolio",
+		template: "%s | Hudson Daniel",
+	},
+	description: "Software engineer",
+	openGraph: {
+		title: "Hudson Daniel",
+		description: "Software engineer",
+		url: "https://portfolio-hudson.vercel.app",
+		siteName: "Hudson Daniel",
+		locale: "en-US",
+		type: "website",
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-video-preview": -1,
+			"max-image-preview": "large",
+			"max-snippet": -1,
+		},
+	},
+	twitter: {
+		title: "Hudson Daniel",
+		card: "summary_large_image",
+	},
+	icons: {
+		shortcut: "/favicon.png",
+	},
+};
+
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
-      <head>
-        <Analytics />
-        <link rel="icon" href="/favicon.png" type="image/png" />
-      </head>
-      <body
-        className={`bg-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined}`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
+			<head>
+				<Analytics />
+			</head>
+			<body
+				className={`bg-black ${
+					process.env.NODE_ENV === "development" ? "debug-screens" : undefined
+				}`}
+			>
+				{children}
+			</body>
+		</html>
+	);
 }

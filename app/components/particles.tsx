@@ -11,6 +11,19 @@ interface ParticlesProps {
 	refresh?: boolean;
 }
 
+interface Circle {
+	x: number;
+	y: number;
+	translateX: number;
+	translateY: number;
+	size: number;
+	alpha: number;
+	targetAlpha: number;
+	dx: number;
+	dy: number;
+	magnetism: number;
+}
+
 export default function Particles({
 	className = "",
 	quantity = 30,
@@ -21,11 +34,12 @@ export default function Particles({
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const canvasContainerRef = useRef<HTMLDivElement>(null);
 	const context = useRef<CanvasRenderingContext2D | null>(null);
-	const circles = useRef<any[]>([]);
+	const circles = useRef<Circle[]>([]);
 	const mousePosition = useMousePosition();
 	const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 	const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
 	const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+	const animationFrameId = useRef<number>();
 
 	useEffect(() => {
 		if (canvasRef.current) {
@@ -37,6 +51,9 @@ export default function Particles({
 
 		return () => {
 			window.removeEventListener("resize", initCanvas);
+			if (animationFrameId.current) {
+				cancelAnimationFrame(animationFrameId.current);
+			}
 		};
 	}, []);
 
@@ -65,19 +82,6 @@ export default function Particles({
 				mouse.current.y = y;
 			}
 		}
-	};
-
-	type Circle = {
-		x: number;
-		y: number;
-		translateX: number;
-		translateY: number;
-		size: number;
-		alpha: number;
-		targetAlpha: number;
-		dx: number;
-		dy: number;
-		magnetism: number;
 	};
 
 	const resizeCanvas = () => {
@@ -196,6 +200,7 @@ export default function Particles({
 			circle.translateY +=
 				(mouse.current.y / (staticity / circle.magnetism) - circle.translateY) /
 				ease;
+
 			// circle gets out of the canvas
 			if (
 				circle.x < -circle.size ||
@@ -210,20 +215,10 @@ export default function Particles({
 				drawCircle(newCircle);
 				// update the circle position
 			} else {
-				drawCircle(
-					{
-						...circle,
-						x: circle.x,
-						y: circle.y,
-						translateX: circle.translateX,
-						translateY: circle.translateY,
-						alpha: circle.alpha,
-					},
-					true,
-				);
+				drawCircle(circle, true);
 			}
 		});
-		window.requestAnimationFrame(animate);
+		animationFrameId.current = requestAnimationFrame(animate);
 	};
 
 	return (

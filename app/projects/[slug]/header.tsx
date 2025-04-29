@@ -67,8 +67,10 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 								views,
 							)}
 						</span>
-						<Link target="_blank" href="https://www.linkedin.com/in/hudson--daniel/">
-							<div className="flex items-center gap-2">
+						<Link
+							target="_blank"
+							href="https://www.linkedin.com/in/hudson--daniel/"
+						>
 								<Linkedin
 									className={`w-6 h-6 duration-200 hover:font-medium ${
 										isIntersecting
@@ -76,13 +78,8 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 											: "text-zinc-600 hover:text-zinc-900"
 									} `}
 								/>
-								<span className="hidden font-medium text-zinc-400 lg:block">
-									Connect on LinkedIn
-								</span>
-							</div>
 						</Link>
 						<Link target="_blank" href="https://github.com/Hudsondaniel">
-							<div className="flex items-center gap-2">
 								<Github
 									className={`w-6 h-6 duration-200 hover:font-medium ${
 										isIntersecting
@@ -90,10 +87,6 @@ export const Header: React.FC<Props> = ({ project, views }) => {
 											: "text-zinc-600 hover:text-zinc-900"
 									} `}
 								/>
-								<span className="hidden font-medium text-zinc-400 lg:block">
-									More Projects
-								</span>
-							</div>
 						</Link>
 					</div>
 

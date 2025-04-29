@@ -2,8 +2,29 @@ import type { Project } from "@/types/project";
 import Link from "next/link";
 import { Eye } from "lucide-react";
 import Image from "next/image";
-import { FaReact, FaNodeJs, FaJs, FaGithub, FaDatabase, FaHtml5, FaCss3Alt } from "react-icons/fa";
-import { SiThreedotjs, SiTypescript, SiExpress, SiGnubash, SiBlender, SiMicroeditor, SiGreensock, SiWebpack, SiGoogle, SiNextdotjs, SiTailwindcss, SiVite } from "react-icons/si";
+import {
+	FaReact,
+	FaNodeJs,
+	FaJs,
+	FaGithub,
+	FaDatabase,
+	FaHtml5,
+	FaCss3Alt,
+} from "react-icons/fa";
+import {
+	SiThreedotjs,
+	SiTypescript,
+	SiExpress,
+	SiGnubash,
+	SiBlender,
+	SiMicroeditor,
+	SiGreensock,
+	SiWebpack,
+	SiGoogle,
+	SiNextdotjs,
+	SiTailwindcss,
+	SiVite,
+} from "react-icons/si";
 
 type Props = {
 	project: Project;
@@ -13,7 +34,9 @@ type Props = {
 const techIconMap: Record<string, JSX.Element> = {
 	react: <FaReact className="w-6 h-6 text-cyan-400" title="React" />,
 	threejs: <SiThreedotjs className="w-6 h-6 text-white" title="Three.js" />,
-	typescript: <SiTypescript className="w-6 h-6 text-blue-500" title="TypeScript" />,
+	typescript: (
+		<SiTypescript className="w-6 h-6 text-blue-500" title="TypeScript" />
+	),
 	javascript: <FaJs className="w-6 h-6 text-yellow-400" title="JavaScript" />,
 	nodejs: <FaNodeJs className="w-6 h-6 text-green-600" title="Node.js" />,
 	monaco: <SiMicroeditor className="w-6 h-6 text-blue-400" title="Monaco" />,
@@ -26,8 +49,10 @@ const techIconMap: Record<string, JSX.Element> = {
 	html: <FaHtml5 className="w-6 h-6 text-orange-500" title="HTML" />,
 	google: <SiGoogle className="w-6 h-6 text-blue-500" title="Google" />,
 	nextjs: <SiNextdotjs className="w-6 h-6 text-white" title="Next.js" />,
-	tailwind: <SiTailwindcss className="w-6 h-6 text-cyan-400" title="Tailwind CSS" />,
-	vite: <SiVite className="w-6 h-6 text-purple-500" title="Vite" />
+	tailwind: (
+		<SiTailwindcss className="w-6 h-6 text-cyan-400" title="Tailwind CSS" />
+	),
+	vite: <SiVite className="w-6 h-6 text-purple-500" title="Vite" />,
 };
 
 export const Article: React.FC<Props> = ({ project, views }) => {
@@ -60,7 +85,15 @@ export const Article: React.FC<Props> = ({ project, views }) => {
 				<div className="flex flex-wrap gap-2 mt-4">
 					{project.techStack?.map((tech) => {
 						const icon = techIconMap[tech.toLowerCase()];
-						return icon || <FaDatabase className="w-6 h-6 text-zinc-400" title={tech} key={tech} />;
+						return icon ? (
+							<div key={tech}>{icon}</div>
+						) : (
+							<FaDatabase
+								className="w-6 h-6 text-zinc-400"
+								title={tech}
+								key={tech}
+							/>
+						);
 					})}
 				</div>
 			</article>
