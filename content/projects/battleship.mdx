@@ -1,177 +1,144 @@
 ---
-title: "@upstash/kafka"
-description: A fully typed Kafka client built for Upstash Kafka and HTTP, perfect for serverless and edge runtimes
-date: "2022-01-08"
-url: https://upstash.com/kafka
-repository: upstash/upstash-kafka
+title: Battleship
+description: A modern web-based implementation of the classic Battleship game featuring an interactive UI, intelligent AI opponent, and dynamic gameplay mechanics.
+date: "2024-06-20"
+url: https://battleship-smoky.vercel.app/
 published: true
+repository: "Hudsondaniel/Battleship"
+techStack:
+    - javascript
+    - html
+    - css
+    - webpack
 ---
 
+<a href="https://battleship-smoky.vercel.app/" className="block hover:opacity-75 transition-opacity duration-200">
+    <img 
+        src="/Project-Pics/battleship-snap.png" 
+        alt="Battleship Game Interface" 
+        className="rounded-lg shadow-2xl border border-zinc-800"
+        width="800" 
+        height="800" 
+    />
+</a>
 
-An HTTP/REST based Kafka client built on top of
-[Upstash REST API](https://docs.upstash.com/kafka/rest).
+## Project Overview
 
-It is the only connectionless (HTTP based) Kafka client and designed for:
+Experience the classic naval warfare strategy game reimagined for the modern web. Built with vanilla JavaScript and powered by an intelligent AI opponent, this implementation of Battleship combines nostalgic gameplay with contemporary web technologies. The game features intuitive ship placement, strategic combat mechanics, and a responsive design that works seamlessly across all devices.
 
-- Serverless functions (AWS Lambda ...)
-- Cloudflare Workers (see the example)
-- Fastly Compute@Edge
-- Next.js Edge, Remix ...
-- Client side web/mobile applications
-- WebAssembly and other environments where HTTP is preferred over TCP
-  connections.
+## Game Features
 
-# Installation
+### ⚔️ Strategic Gameplay
+- Intuitive drag-and-drop ship placement system
+- Real-time battle feedback with visual and audio cues
+- Dynamic hit/miss indicators and ship damage states
+- Comprehensive game statistics tracking
 
-```bash
-npm install @upstash/kafka
-```
+### 🤖 Advanced AI Opponent
+- Smart targeting algorithm with adaptive strategy
+- Probability-based attack planning
+- Multiple difficulty levels for varied challenge
+- Learning patterns based on player behavior
 
-# Quickstart
+### 🎮 User Experience
+- Responsive grid-based game board
+- Smooth animations and transitions
+- Interactive tutorial for new players
+- Cross-device touch and mouse support
 
-## Auth
+### 💾 Game Management
+- Automatic save system
+- Game state persistence
+- Match history tracking
+- Customizable game settings
 
-1. Go to [upstash](https://console.upstash.com/kafka) and select your database.
-2. Copy the `REST API` secrets at the bottom of the page
+## Technical Implementation
 
-```typescript
-import { Kafka } from "@upstash/kafka"
+### Core Architecture
+```javascript
+// Game State Management
+class BattleshipGame {
+    constructor(difficulty = 'medium') {
+        this.state = {
+            playerBoard: new GameBoard(),
+            computerBoard: new GameBoard(),
+            currentPhase: GamePhase.SETUP,
+            difficulty
+        };
+        
+        this.ai = new AIController(difficulty);
+        this.eventBus = new EventEmitter();
+    }
 
-const kafka = new Kafka({
-  url: "<UPSTASH_KAFKA_REST_URL>",
-  username: "<UPSTASH_KAFKA_REST_USERNAME>",
-  password: "<UPSTASH_KAFKA_REST_PASSWORD>",
-})
-```
+    initialize() {
+        // Setup game components
+        this.setupBoards();
+        this.bindEventListeners();
+        this.startGame();
+    }
 
-## Produce a single message
+    handleAttack(coordinates) {
+        const result = this.processAttack(coordinates);
+        this.updateGameState(result);
+        
+        if (this.isPlayerTurn && !this.isGameOver) {
+            this.ai.calculateNextMove(this.state.playerBoard);
+        }
+    }
+}
 
-```typescript
-const p = kafka.producer()
-const message = { hello: "world" } // Objects will get serialized using `JSON.stringify`
-const res = await p.produce("<my.topic>", message)
-const res = await p.produce("<my.topic>", message, {
-  partition: 1,
-  timestamp: 12345,
-  key: "<custom key>",
-  headers: [{ key: "traceId", value: "85a9f12" }],
-})
-```
+// AI Strategy Implementation
+class AIController {
+    constructor(difficulty) {
+        this.difficulty = difficulty;
+        this.hitStack = [];
+        this.probabilityMap = new ProbabilityCalculator();
+    }
 
-## Produce multiple messages.
-
-The same options from the example above can be set for every message.
-
-```typescript
-const p = kafka.producer()
-const res = await p.produceMany([
-  {
-    topic: "my.topic",
-    value: { hello: "world" },
-    // ...options
-  },
-  {
-    topic: "another.topic",
-    value: "another message",
-    // ...options
-  },
-])
-```
-
-## Consume
-
-The first time a consumer is created, it needs to figure out the group
-coordinator by asking the Kafka brokers and joins the consumer group. This
-process takes some time to complete. That's why when a consumer instance is
-created first time, it may return empty messages until consumer group
-coordination is completed.
-
-```typescript
-const c = kafka.consumer()
-const messages = await c.consume({
-  consumerGroupId: "group_1",
-  instanceId: "instance_1",
-  topics: ["test.topic"],
-  autoOffsetReset: "earliest",
-})
-```
-
-More examples can be found in the
-[docstring](https://github.com/upstash/upstash-kafka/blob/main/pkg/consumer.ts#L265)
-
-## Commit manually
-
-While `consume` can handle committing automatically, you can also use
-`Consumer.commit` to manually commit.
-
-```typescript
-const consumerGroupId = "mygroup"
-const instanceId = "myinstance"
-const topic = "my.topic"
-
-const c = kafka.consumer()
-const messages = await c.consume({
-  consumerGroupId,
-  instanceId,
-  topics: [topic],
-  autoCommit: false,
-})
-
-for (const message of messages) {
-  // message handling logic
-
-  await c.commit({
-    consumerGroupId,
-    instanceId,
-    offset: {
-      topic: message.topic,
-      partition: message.partition,
-      offset: message.offset,
-    },
-  })
+    calculateNextMove(playerBoard) {
+        if (this.hitStack.length > 0) {
+            return this.targetAdjacentCells();
+        }
+        return this.probabilityMap.getOptimalTarget(playerBoard);
+    }
 }
 ```
 
-## Fetch
+### Development Architecture
 
-You can also manage offsets manually by using `Consumer.fetch`
+- **Frontend Core**
+  - Vanilla JavaScript for pure performance
+  - CSS Grid for responsive layouts
+  - HTML5 Drag and Drop API
+  - Web Audio API for sound effects
 
-```typescript
-const c = kafka.consumer()
-const messages = await c.fetch({
-  topic: "greeting",
-  partition: 3,
-  offset: 42,
-  timeout: 1000,
-})
-```
+- **Build System**
+  - Webpack for module bundling
+  - Asset optimization pipeline
+  - Development hot reloading
+  - Production build optimization
 
-## Examples
+- **Game Engine**
+  - Event-driven architecture
+  - State management system
 
-See [/examples](https://github.com/upstash/upstash-kafka/tree/main/examples) as
-well as various examples in the docstrings of each method.
 
-# Contributing
+### Immediate Plans
+- Online multiplayer functionality
+- Additional AI difficulty levels
+- Custom ship skins and themes
+- Achievement system
 
-## Requirements
+### Future Vision
+- Global leaderboard system
+- Tournament mode
+- Progressive Web App (PWA)
+- Social features integration
 
-- [nodejs](https://nodejs.org) v14.x or higher
-- [pnpm](https://pnpm.io/installation)
+## Try It Out
 
-## Setup
+Ready to test your naval strategy? Experience the game:
 
-0. Install dependencies using `pnpm install`
-1. Create a kafka instance on upstash.
-   [docs](https://docs.upstash.com/kafka#create-a-kafka-cluster)
-2. Create the following topics: `blue`, `red`, `green`.
-   [docs](https://docs.upstash.com/kafka#create-a-topic)
-
-   The partitions or retention settings don't matter at this time.
-
-3. Create `.env` file with your kafka secrets `cp .env.example .env`
-
-## Running tests
-
-```bash
-pnpm test
-```
+- [Play Now](https://battleship-smoky.vercel.app/)
+- [View Source](https://github.com/Hudsondaniel/Battleship)
+- [Report Issues](https://github.com/Hudsondaniel/Battleship/issues)
