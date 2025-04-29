@@ -6,8 +6,8 @@ import { Article } from "./article";
 import { Redis } from "@upstash/redis";
 import { Eye } from "lucide-react";
 import { getAllProjects } from "../../lib/mdx";
-import { FaReact, FaNodeJs, FaJs, FaDatabase } from "react-icons/fa";
-import { SiThreedotjs, SiTypescript, SiExpress, SiGnubash, SiBlender, SiMicroeditor, SiGreensock } from "react-icons/si";
+import { FaReact, FaNodeJs, FaJs, FaDatabase, FaHtml5, FaCss3Alt } from "react-icons/fa";
+import { SiThreedotjs, SiTypescript, SiExpress, SiGnubash, SiBlender, SiMicroeditor, SiGreensock, SiWebpack, SiGoogle } from "react-icons/si";
 
 const redis = Redis.fromEnv();
 
@@ -22,6 +22,10 @@ const techIconMap: Record<string, JSX.Element> = {
   zustand: <FaDatabase className="w-6 h-6 text-zinc-400" title="Zustand" />,
   express: <SiExpress className="w-6 h-6 text-gray-400" title="Express" />,
   blender: <SiBlender className="w-6 h-6 text-orange-500" title="Blender" />,
+  webpack: <SiWebpack className="w-6 h-6 text-blue-500" title="Webpack" />,
+  css: <FaCss3Alt className="w-6 h-6 text-blue-400" title="CSS" />,
+  html: <FaHtml5 className="w-6 h-6 text-orange-500" title="HTML" />,
+  google: <SiGoogle className="w-6 h-6 text-blue-500" title="Google" />
 };
 
 export const revalidate = 60;
@@ -100,7 +104,7 @@ export default async function ProjectsPage() {
                 <p className="mt-4 leading-8 duration-150 text-zinc-400 group-hover:text-zinc-300">
                   {featured.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mt-5">
+                <div className="flex flex-wrap gap-2 mt-4">
                   {featured.techStack?.map((tech: string) => {
                     const icon = techIconMap[tech.toLowerCase()];
                     return icon || <FaDatabase className="w-6 h-6 text-zinc-400" title={tech} key={tech} />;
