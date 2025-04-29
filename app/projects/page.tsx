@@ -43,18 +43,39 @@ export default async function ProjectsPage() {
     return acc;
   }, {} as Record<string, number>);
 
-  const featured = allProjects.find((project) => project.slug === "sketchcode")!;
-  const top2 = allProjects.find((project) => project.slug === "skynet")!;
-  const top3 = allProjects.find((project) => project.slug === "cv-generator")!;
-  const top4 = allProjects.find((project) => project.slug === "portfolio")!;
+  // Get featured projects, falling back to the first available project if not found
+  const featured = allProjects.find((project) => project.slug === "sketchcode") || allProjects[0];
+  const top2 = allProjects.find((project) => project.slug === "skynet") || allProjects[1];
+  const top3 = allProjects.find((project) => project.slug === "cv-generator") || allProjects[2];
+  const top4 = allProjects.find((project) => project.slug === "portfolio") || allProjects[3];
+
+  // Only proceed if we have at least one project
+  if (!featured) {
+    return (
+      <div className="relative pb-16">
+        <Navigation />
+        <div className="px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
+          <div className="max-w-2xl mx-auto lg:mx-0">
+            <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+              Projects
+            </h2>
+            <p className="mt-4 text-zinc-400">
+              No projects available at the moment.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const sorted = allProjects
     .filter((p) => p.published)
     .filter(
       (project) =>
-        project.slug !== featured.slug &&
-        project.slug !== top2.slug &&
-        project.slug !== top3.slug &&
-        project.slug !== top4.slug,
+        project.slug !== featured?.slug &&
+        project.slug !== top2?.slug &&
+        project.slug !== top3?.slug &&
+        project.slug !== top4?.slug,
     )
     .sort(
       (a, b) =>
@@ -125,7 +146,7 @@ export default async function ProjectsPage() {
           </Card>
 
           <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0">
-            {[top2, top3].map((project) => (
+            {[top2, top3].filter(Boolean).map((project) => (
               <Card key={project.slug}>
                 <Article project={project} views={views[project.slug] ?? 0} />
               </Card>
@@ -134,9 +155,11 @@ export default async function ProjectsPage() {
         </div>
 
         <div className="mx-auto mt-8">
-          <Card>
-            <Article project={top4} views={views[top4.slug] ?? 0} />
-          </Card>
+          {top4 && (
+            <Card>
+              <Article project={top4} views={views[top4.slug] ?? 0} />
+            </Card>
+          )}
         </div>
 
         <div className="hidden w-full h-px md:block bg-zinc-800" />
