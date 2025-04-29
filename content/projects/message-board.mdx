@@ -1,114 +1,68 @@
 ---
-title: "@upstash/cli"
-description: A CLI to provision and manage Upstash resources, including Redis and Kafka databases.
-date: "2022-05-16"
-repository: upstash/cli
+title: Message Board
+description: A message board application built with React and Vite, featuring real-time updates and responsive design.
+date: "2024-08-15"
+url: https://react-message-board-wheat.vercel.app/
+repository: Hudsondaniel/react-message-board
 published: true
+techStack:
+    - react
+    - vite
+    - css
 ---
 
+<a href="https://message-board-react.vercel.app/" className="block hover:opacity-75 transition-opacity duration-200">
+    <img 
+        src="/Project-Pics/message-snap.png" 
+        alt="Message Board Interface" 
+        className="rounded-lg shadow-2xl border border-zinc-800"
+        width="800" 
+        height="800" 
+    />
+</a>
 
-Manage Upstash resources in your terminal or CI.
+## Project Overview
 
-![](https://raw.githubusercontent.com/upstash/cli/main/img/banner.svg)
+A modern message board application that enables real-time communication and discussion. Built with React and Vite, it provides a smooth user experience with dynamic content loading and responsive design.
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/upstash/cli)
-[![Downloads/week](https://img.shields.io/npm/dw/lstr.svg)](https://npmjs.org/package/@upstash/cli)
+## Key Features
 
-# Installation
+### 💬 Message Management
+- Real-time message updates
+- Thread-based discussions
+- Rich text formatting
+- Message search functionality
 
-## npm
+### 👤 User Experience
+- Clean, intuitive interface
+- Responsive design
+- Easy navigation
+- Quick message posting
 
-You can install upstash's cli directly from npm
-
-```bash
-npm i -g @upstash/cli
-```
-
-It will be added as `upstash` to your system's path.
-
-## Compiled binaries:
-
-`upstash` is also available from the
-[releases page](https://github.com/upstash/upstash-cli/releases/latest) compiled
-for windows, linux and mac (both intel and m1).
-
-# Usage
-
-```bash
-> upstash
-
-  Usage:   upstash
-  Version: development
-
-  Description:
-
-    Official cli for Upstash products
-
-  Options:
-
-    -h, --help               - Show this help.
-    -V, --version            - Show the version number for this program.
-    -c, --config   <string>  - Path to .upstash.json file
-
-  Commands:
-
-    auth   - Login and logout
-    redis  - Manage redis database instances
-    kafka  - Manage kafka clusters and topics
-    team   - Manage your teams and their members
-
-  Environment variables:
-
-    UPSTASH_EMAIL    <string>  - The email you use on upstash
-    UPSTASH_API_KEY  <string>  - The api key from upstash
-```
-
-## Authentication
-
-When running `upstash` for the first time, you should log in using
-`upstash auth login`. Provide your email and an api key.
-[See here for how to get a key.](https://docs.upstash.com/redis/howto/developerapi#api-development)
-
-As an alternative to logging in, you can provide `UPSTASH_EMAIL` and
-`UPSTASH_API_KEY` as environment variables.
-
-## Usage
-
-Let's create a new redis database:
-
-```bash
-> upstash redis create --name=my-db --region=eu-west-1
-  Database has been created
-
-  database_id          a3e25299-132a-45b9-b026-c73f5a807859
-  database_name        my-db
-  database_type        Pay as You Go
-  region               eu-west-1
-  type                 paid
-  port                 37090
-  creation_time        1652687630
-  state                active
-  password             88ae6392a1084d1186a3da37fb5f5a30
-  user_email           andreas@upstash.com
-  endpoint             eu1-magnetic-lacewing-37090.upstash.io
-  edge                 false
-  multizone            false
-  rest_token           AZDiASQgYTNlMjUyOTktMTMyYS00NWI5LWIwMjYtYzczZjVhODA3ODU5ODhhZTYzOTJhMTA4NGQxMTg2YTNkYTM3ZmI1ZjVhMzA=
-  read_only_rest_token ApDiASQgYTNlMjUyOTktMTMyYS00NWI5LWIwMjYtYzczZjVhODA3ODU5O_InFjRVX1XHsaSjq1wSerFCugZ8t8O1aTfbF6Jhq1I=
+### ⚡ Performance
+- Dynamic content loading
+- Efficient state management
+- Fast message rendering
+- Optimized data handling
 
 
-  You can visit your database details page: https://console.upstash.com/redis/a3e25299-132a-45b9-b026-c73f5a807859
+## Core Technologies
 
-  Connect to your database with redis-cli: redis-cli -u redis://88ae6392a1084d1186a3da37fb5f5a30@eu1-magnetic-lacewing-37090.upstash.io:37090
-```
+- **Frontend Stack**
+  - React for UI components
+  - Vite for development
+  - CSS for styling
+  - Custom hooks for state
 
-## Output
+- **Development Tools**
+  - ESLint for code quality
+  - Prettier for formatting
+  - Jest for testing
+  - Git for version control
 
-Most commands support the `--json` flag to return the raw api response as json,
-which you can parse and automate your system.
 
-```bash
-> upstash  redis create --name=test2113 --region=us-central1 --json | jq '.endpoint'
+## Try It Out
 
- "gusc1-clean-gelding-30208.upstash.io"
-```
+- [Live Demo](https://react-message-board-wheat.vercel.app/)
+- [Source Code](https://github.com/Hudsondaniel/react-message-board)
+- [Report Issues](https://github.com/Hudsondaniel/react-message-board/issues)

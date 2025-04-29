@@ -1,35 +1,66 @@
 ---
-title: QStash
-description: QStash is a fully managed serverless queue and messaging service designed for the serverless era.
-date: "2022-07-18"
-url: https://upstash.com/qstash
+title: Tic-Tac-Toe
+description: A classic Tic-Tac-Toe game built with vanilla JavaScript, featuring a clean interface and smooth gameplay experience.
+date: "2024-02-15"
+url: https://tic-tac-toe-ebon-mu.vercel.app/
+repository: "Hudsondaniel/Tic-Tac-Toe"
 published: true
+techStack:
+    - javascript
+    - html
+    - css
 ---
 
-QStash is an HTTP based messaging and scheduling solution for the serverless and edge runtimes.
+<a href="https://tic-tac-toe-ebon-mu.vercel.app/" className="block hover:opacity-75 transition-opacity duration-200">
+    <img 
+        src="/Project-Pics/tic-tac-toe-snap.png" 
+        alt="Tic-Tac-Toe Game Interface" 
+        className="rounded-lg shadow-2xl border border-zinc-800"
+        width="800" 
+        height="800" 
+    />
+</a>
 
-- 100% serverless, no stateful connections required. Messages are pushed to your API.
-- At-least-once delivery guaranteed to any public API
-- Pubsub via topics
-- Delay message delivery
-- Message deduplication
-- Scheduling via CRON
+## Project Overview
 
+A modern implementation of the classic Tic-Tac-Toe game, built with vanilla JavaScript. This project demonstrates clean code architecture and responsive design principles while delivering an engaging gaming experience.
 
-Formally, QStash is a message queue and task scheduler designed for serverless runtimes. Informally, QStash is a glue for your serverless functions.
+## Key Features
 
-There was a perception serverless was only good for simple tasks. Not anymore. People build powerful systems with serverless stack. Powerful systems are composed of multiple components. Communication among those components is a big engineering problem. There are already great solutions for this problem. But we think existing solutions do not fit in serverless space. Either they are too complex or not designed to work with stateless runtimes. So we want a solution which (is):
+### 🎮 Game Mechanics
+- Two-player gameplay
+- Turn-based system
+- Win condition checking
+- Game state management
 
-- Works anywhere including serverless and edge.
-- Messaging as a service with no backend for users to run.
-- Lightweight, easy to understand, requires nothing to learn.
-- Price scales to zero.
+### 🎨 User Interface
+- Clean, minimal design
+- Responsive grid layout
+- Game status display
+- Reset functionality
 
-Let's talk about a real world example. We have an e-commerce app and we want to send an informational email after each purchase. We have a service (an API route) for new purchases (newPurchase) and a second service for sending emails and notifications (sendEmail). We can call the sendEmail service from the newPurchase service. But what if the call fails? Should we wait for the response and retry? What if too many calls congest the sendEmail service and the service does not respond on time? You need to handle all these cases in your newPurchase service. Moreover, when you change the contract of sendEmail service; you have to update your newPurchase service too.
+### ⚡ Performance
+- Fast move processing
+- Instant feedback
+- Smooth animations
+- Lightweight implementation
 
-If you use QStash in the above example, you simply send a request to QStash from the newPurchase service. QStash will queue the request and call the sendEmail service. If the service does not respond, QStash will retry with a backoff strategy. The latency of sendEmail service will not affect the newPurchase service, because it will not wait for a response from the sendEmail service. QStash decouples the newPurchase and sendEmail services. You can update both services independently as long as you keep the message format compatible.
+## Core Technologies
 
-With QStash, you can add delays to the requests. Send an email 3 days after the shipment to remind the customer to add a review. You can also schedule tasks. You can send the requests with a CRON expression, so it will be run repetitively.
+- **Frontend Stack**
+  - Vanilla JavaScript for game logic
+  - CSS Grid for game board
+  - Custom animations
+  - Responsive design
 
+- **Game Features**
+  - State management
+  - Move validation
+  - Win detection
+  - Draw handling
 
-To learn more about QStash, visit [upstash.com/qstash](upstash.com/qstash).
+## Try It Out
+
+- [Play Game](https://tic-tac-toe-ebon-mu.vercel.app/)
+- [View Source](https://github.com/Hudsondaniel/Tic-Tac-Toe)
+- [Report Issues](https://github.com/Hudsondaniel/Tic-Tac-Toe/issues)
