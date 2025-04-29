@@ -1,46 +1,89 @@
 ---
-title: Vercel Terraform Provider
-description: A Terraform provider for Vercel. It has been deprecated it when Vercel rolled out their official provider.
-date: "2021-03-16"
-repository: chronark/terraform-provider-vercel
-url: https://registry.terraform.io/providers/chronark/vercel/latest
+title: Restaurant Page
+description: A modern restaurant website featuring dynamic content management, responsive design, and seamless user experience built with vanilla JavaScript and Webpack.
+date: "2024-04-29"
+url: https://restaurant-page-sooty.vercel.app/
+repository: "hudsondaniel/Restaurant-Page"
 published: true
+techStack:
+    - javascript
+    - html
+    - css
+    - webpack
 ---
 
+<a href="https://restaurant-page-sooty.vercel.app/" className="block hover:opacity-75 transition-opacity duration-200">
+    <img 
+        src="/Project-Pics/restaurant-snap.png" 
+        alt="Restaurant Website Interface" 
+        className="rounded-lg shadow-2xl border border-zinc-800"
+        width="800" 
+        height="800" 
+    />
+</a>
 
+## Project Overview
 
-Back in the day when Vercel didn't have an official Terraform provider, I wrote one. 
-I needed to manage my Vercel projects and especially sync environment variables from different cloud providers.
-Terraform was great to provision some postgres databases on digital ocean, but there was no way to sync the credentials with Vercel.
+A modern restaurant website that combines elegant design with efficient functionality. Built using vanilla JavaScript and Webpack, this project demonstrates how to create a responsive, modular web application that provides an excellent user experience for restaurant customers.
 
-```hcl
-terraform {
-  required_providers {
-    vercel = {
-      source  = "registry.terraform.io/chronark/vercel"
-      version = ">=0.10.3"
-    }
-  }
-}
+## Key Features
 
-provider "vercel" {
-  token = "<YOUR_TOKEN>"
-}
+### 🍽️ Menu Management
+- Dynamic menu item creation and updates
+- Categorized food sections
+- Special dishes highlights
+- Pricing display system
 
-resource "vercel_project" "my_project" {
-  name = "project-via-terraform"
-  git_repository {
-    type = "github"
-    repo = "chronark/terraform-provider-vercel"
-  }
-}
-```
+### 💫 User Interface
+- Clean, modern design
+- Intuitive navigation
+- Smooth scrolling
+- Interactive elements
 
-It was a fun project and I learned a lot about Terraform and Vercel's API. 
-It gave me the opportunity to contribute to the Terraform ecosystem and my appreciation for the work that the Terraform team does is immense.
+### ⚡ Performance
+- Optimized asset loading
+- Efficient DOM manipulation
+- Fast page transitions
+- Minimal dependencies
 
-There have been quite a few individuals and teams that have used this provider and I am happy that it has been useful to you.
+### Core Technologies
 
-Now that Vercel have stepped in, I have decided to [deprecate](https://twitter.com/chronark_/status/1517759708983177218) this one on April 23rd 2022. 
+- **Frontend Structure**
+  - Vanilla JavaScript modules
+  - CSS Grid and Flexbox
+  - Semantic HTML5
+  - Webpack bundling
 
-Please use the [official provider](https://registry.terraform.io/providers/vercel/vercel/latest) instead.
+- **Styling System**
+  - CSS custom properties
+  - Responsive breakpoints
+  - Animation system
+  - Typography scale
+
+- **Asset Management**
+  - Image optimization
+  - Lazy loading
+  - Cache strategies
+  - Resource preloading
+
+## Design Philosophy
+
+- **Visual Appeal**
+  - Restaurant atmosphere reflection
+  - Appetizing imagery
+  - Consistent branding
+  - Clear typography
+
+- **User Experience**
+  - Easy menu navigation
+  - Quick load times
+  - Clear call-to-actions
+  - Intuitive layout
+
+## Experience It
+
+Visit the restaurant website and explore the features:
+
+- [View Website](https://restaurant-page-sooty.vercel.app/)
+- [View Source](https://github.com/hudsondaniel/Restaurant-Page)
+- [Report Issues](https://github.com/hudsondaniel/Restaurant-Page/issues) 
