@@ -7,7 +7,7 @@ import { Redis } from "@upstash/redis";
 import { Eye } from "lucide-react";
 import { getAllProjects } from "../../lib/mdx";
 import { FaReact, FaNodeJs, FaJs, FaDatabase, FaHtml5, FaCss3Alt } from "react-icons/fa";
-import { SiThreedotjs, SiTypescript, SiExpress, SiGnubash, SiBlender, SiMicroeditor, SiGreensock, SiWebpack, SiGoogle } from "react-icons/si";
+import { SiThreedotjs, SiTypescript, SiExpress, SiGnubash, SiBlender, SiMicroeditor, SiGreensock, SiWebpack, SiGoogle, SiNextdotjs, SiTailwindcss, SiVite } from "react-icons/si";
 
 const redis = Redis.fromEnv();
 
@@ -25,7 +25,10 @@ const techIconMap: Record<string, JSX.Element> = {
   webpack: <SiWebpack className="w-6 h-6 text-blue-500" title="Webpack" />,
   css: <FaCss3Alt className="w-6 h-6 text-blue-400" title="CSS" />,
   html: <FaHtml5 className="w-6 h-6 text-orange-500" title="HTML" />,
-  google: <SiGoogle className="w-6 h-6 text-blue-500" title="Google" />
+  google: <SiGoogle className="w-6 h-6 text-blue-500" title="Google" />,
+  nextjs: <SiNextdotjs className="w-6 h-6 text-white" title="Next.js" />,
+  tailwind: <SiTailwindcss className="w-6 h-6 text-cyan-400" title="Tailwind CSS" />,
+  vite: <SiVite className="w-6 h-6 text-purple-500" title="Vite" />
 };
 
 export const revalidate = 60;
@@ -42,8 +45,8 @@ export default async function ProjectsPage() {
 
   const featured = allProjects.find((project) => project.slug === "sketchcode")!;
   const top2 = allProjects.find((project) => project.slug === "skynet")!;
-  const top3 = allProjects.find((project) => project.slug === "highstorm")!;
-  const top4 = allProjects.find((project) => project.slug === "access")!;
+  const top3 = allProjects.find((project) => project.slug === "cv-generator")!;
+  const top4 = allProjects.find((project) => project.slug === "portfolio")!;
   const sorted = allProjects
     .filter((p) => p.published)
     .filter(

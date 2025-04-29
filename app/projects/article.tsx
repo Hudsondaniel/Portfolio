@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Eye } from "lucide-react";
 import Image from "next/image";
 import { FaReact, FaNodeJs, FaJs, FaGithub, FaDatabase, FaHtml5, FaCss3Alt } from "react-icons/fa";
-import { SiThreedotjs, SiTypescript, SiExpress, SiGnubash, SiBlender, SiMicroeditor, SiGreensock, SiWebpack, SiGoogle } from "react-icons/si";
+import { SiThreedotjs, SiTypescript, SiExpress, SiGnubash, SiBlender, SiMicroeditor, SiGreensock, SiWebpack, SiGoogle, SiNextdotjs, SiTailwindcss, SiVite } from "react-icons/si";
 
 type Props = {
 	project: Project;
@@ -24,7 +24,10 @@ const techIconMap: Record<string, JSX.Element> = {
 	webpack: <SiWebpack className="w-6 h-6 text-blue-500" title="Webpack" />,
 	css: <FaCss3Alt className="w-6 h-6 text-blue-400" title="CSS" />,
 	html: <FaHtml5 className="w-6 h-6 text-orange-500" title="HTML" />,
-	google: <SiGoogle className="w-6 h-6 text-blue-500" title="Google" />
+	google: <SiGoogle className="w-6 h-6 text-blue-500" title="Google" />,
+	nextjs: <SiNextdotjs className="w-6 h-6 text-white" title="Next.js" />,
+	tailwind: <SiTailwindcss className="w-6 h-6 text-cyan-400" title="Tailwind CSS" />,
+	vite: <SiVite className="w-6 h-6 text-purple-500" title="Vite" />
 };
 
 export const Article: React.FC<Props> = ({ project, views }) => {
