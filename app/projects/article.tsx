@@ -1,6 +1,5 @@
 import type { Project } from "@/types/project";
 import Link from "next/link";
-import { Eye } from "lucide-react";
 import Image from "next/image";
 import {
 	FaReact,
@@ -28,7 +27,6 @@ import {
 
 type Props = {
 	project: Project;
-	views: number;
 };
 
 const techIconMap: Record<string, JSX.Element> = {
@@ -55,7 +53,7 @@ const techIconMap: Record<string, JSX.Element> = {
 	vite: <SiVite className="w-6 h-6 text-purple-500" title="Vite" />,
 };
 
-export const Article: React.FC<Props> = ({ project, views }) => {
+export const Article: React.FC<Props> = ({ project }) => {
 	return (
 		<Link href={`/projects/${project.slug}`}>
 			<article className="p-4 md:p-8">
@@ -70,10 +68,6 @@ export const Article: React.FC<Props> = ({ project, views }) => {
 						) : (
 							<span>SOON</span>
 						)}
-					</span>
-					<span className="text-zinc-500 text-xs  flex items-center gap-1">
-						<Eye className="w-4 h-4" />{" "}
-						{Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
 					</span>
 				</div>
 				<h2 className="z-20 text-xl font-medium duration-1000 lg:text-3xl text-zinc-200 group-hover:text-white font-display">
