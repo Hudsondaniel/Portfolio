@@ -27,7 +27,7 @@ const socials = [
 
 export default function Example() {
 	return (
-		<div className="bg-gradient-to-tl from-blue-950 via-blue-800/20 to-blue-950">
+		<div className="bg-score-bg">
 			<Navigation />
 			<div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
 				<div className="grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16">
@@ -39,10 +39,10 @@ export default function Example() {
 								className="p-4 relative flex flex-col items-center gap-4 duration-700 group md:gap-8 md:py-24  lg:pb-48  md:p-16"
 							>
 								<span
-									className="absolute w-px h-2/3 bg-gradient-to-b from-blue-500 via-blue-500/50 to-transparent"
+									className="absolute w-px h-2/3 bg-gradient-to-b from-score-accent via-score-accent/50 to-transparent"
 									aria-hidden="true"
 								/>
-								<span className="relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-blue-900 border-blue-500 bg-blue-900 group-hover:border-blue-200 drop-shadow-orange">
+								<span className="relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-score-accent/20 border-score-accent bg-score-surface group-hover:border-score-accent/60 drop-shadow-orange">
 									{s.icon}
 								</span>{" "}
 								<div className="z-10 flex flex-col items-center">

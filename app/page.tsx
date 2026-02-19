@@ -1,52 +1,64 @@
-import Link from "next/link";
-import React from "react";
-import Particles from "./components/particles";
+import dynamic from "next/dynamic";
 
-const navigation = [
-	{ name: "Projects", href: "/projects" },
-	{ name: "Contact", href: "/contact" },
-];
+// Lazy-load heavy sections for performance
+const HeroSection = dynamic(
+	() => import("./components/sections/hero"),
+	{ ssr: true }
+);
+const AboutSection = dynamic(
+	() => import("./components/sections/about"),
+	{ ssr: true }
+);
+const SkillsSection = dynamic(
+	() => import("./components/sections/skills"),
+	{ ssr: true }
+);
+const ProjectsSection = dynamic(
+	() => import("./components/sections/projects"),
+	{ ssr: true }
+);
+const TimelineSection = dynamic(
+	() => import("./components/sections/timeline"),
+	{ ssr: true }
+);
+const ContactSection = dynamic(
+	() => import("./components/sections/contact"),
+	{ ssr: true }
+);
+
+const TopNav = dynamic(() => import("./components/top-nav"), { ssr: false });
+const SideNav = dynamic(() => import("./components/side-nav"), { ssr: false });
+const CustomCursor = dynamic(
+	() => import("./components/custom-cursor"),
+	{ ssr: false }
+);
+const SectionDivider = dynamic(
+	() => import("./components/section-divider"),
+	{ ssr: false }
+);
 
 export default function Home() {
 	return (
-		<div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-blue-950 via-blue-800/20 to-blue-950">
-			<nav className="my-16 animate-fade-in">
-				<ul className="flex items-center justify-center gap-4">
-					{navigation.map((item) => (
-						<Link
-							key={item.href}
-							href={item.href}
-							className="text-sm duration-500 text-zinc-500 hover:text-zinc-300"
-						>
-							{item.name}
-						</Link>
-					))}
-				</ul>
-			</nav>
-			<div className="hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-			<Particles
-				className="absolute inset-0 -z-10 animate-fade-in"
-				quantity={100}
-			/>
-			<h1 className="py-3.5 px-0.5 z-10 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ">
-				Hudson Daniel
-			</h1>
+		<main className="bg-score-bg noise">
+			{/* Navigation */}
+			<TopNav />
+			<SideNav />
 
-			<div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-			<div className="my-16 text-center animate-fade-in">
-				<h2 className="text-sm text-zinc-500 ">
-					I'm building{" "}
-					<Link
-						target="_blank"
-						href="https://sketch-code.vercel.app/"
-						className="underline duration-500 hover:text-zinc-300"
-					>
-						SketchCode
-					</Link>{" "}
-					to solve the pain of visualising data structures real time for
-					Computer Science Professors and Students.
-				</h2>
-			</div>
-		</div>
+			{/* Custom cursor */}
+			<CustomCursor />
+
+			{/* Sections */}
+			<HeroSection />
+			<SectionDivider variant="waveform" />
+			<AboutSection />
+			<SectionDivider variant="staff" />
+			<SkillsSection />
+			<SectionDivider variant="fade" />
+			<ProjectsSection />
+			<SectionDivider variant="waveform" />
+			<TimelineSection />
+			<SectionDivider variant="staff" />
+			<ContactSection />
+		</main>
 	);
 }

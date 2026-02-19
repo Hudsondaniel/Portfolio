@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
+import SmoothScroll from "./components/smooth-scroll";
 
 const inter = Inter({
 	subsets: ["latin"],
@@ -17,13 +18,15 @@ const calSans = localFont({
 export const metadata: Metadata = {
 	metadataBase: new URL("https://portfolio-hudson.vercel.app"),
 	title: {
-		default: "Hudson's Portfolio",
+		default: "Hudson Daniel — Software Engineer · Music Producer · Piano Player",
 		template: "%s | Hudson Daniel",
 	},
-	description: "Software engineer",
+	description:
+		"Software engineer, music producer, and piano player. Composing code like music — one function at a time.",
 	openGraph: {
 		title: "Hudson Daniel",
-		description: "Software engineer",
+		description:
+			"Software engineer, music producer, and piano player. Composing code like music.",
 		url: "https://portfolio-hudson.vercel.app",
 		siteName: "Hudson Daniel",
 		locale: "en-US",
@@ -60,11 +63,11 @@ export default function RootLayout({
 				<Analytics />
 			</head>
 			<body
-				className={`bg-black ${
+				className={`bg-score-bg cursor-none md:cursor-none ${
 					process.env.NODE_ENV === "development" ? "debug-screens" : undefined
 				}`}
 			>
-				{children}
+				<SmoothScroll>{children}</SmoothScroll>
 			</body>
 		</html>
 	);

@@ -4,7 +4,175 @@
 
 @layer base {
   .text-edge-outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
   }
-} 
 
+  /* Smooth scroll via Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0f;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #6c63ff40;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6c63ff80;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(108, 99, 255, 0.3);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Staff lines for timeline */
+  .staff-lines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent calc(25% - 1px),
+      rgba(108, 99, 255, 0.1) calc(25%),
+      transparent calc(25% + 1px)
+    );
+  }
+
+  /* Piano key press effect */
+  .piano-key {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .piano-key:hover {
+    transform: translateY(2px);
+    box-shadow: 0 2px 8px rgba(108, 99, 255, 0.3);
+  }
+
+  .piano-key:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 4px rgba(108, 99, 255, 0.2);
+  }
+
+  /* Equalizer bar base */
+  .eq-bar {
+    animation: equalizer 1.2s ease-in-out infinite alternate;
+    transform-origin: bottom;
+  }
+
+  /* Glass morphism card */
+  .glass {
+    background: rgba(18, 18, 26, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(108, 99, 255, 0.1);
+  }
+
+  /* Gradient text utility */
+  .gradient-text {
+    background: linear-gradient(135deg, #6c63ff, #e84393, #00cec9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow effect */
+  .glow {
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.15),
+      0 0 60px rgba(108, 99, 255, 0.05);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 40px rgba(108, 99, 255, 0.3);
+  }
+
+  /* Vinyl record spin */
+  .vinyl-groove {
+    background: conic-gradient(
+      from 0deg,
+      rgba(255, 255, 255, 0.03) 0deg,
+      transparent 1deg,
+      transparent 9deg,
+      rgba(255, 255, 255, 0.02) 10deg,
+      transparent 11deg,
+      transparent 19deg
+    );
+  }
+
+  /* Noise texture overlay */
+  .noise::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* Section divider - waveform style */
+  .wave-divider {
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+  }
+
+  .wave-divider::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 4px,
+      rgba(108, 99, 255, 0.08) 4px,
+      rgba(108, 99, 255, 0.08) 5px
+    );
+    animation: waveform 3s ease-in-out infinite alternate;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 60%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
+  }
+
+  .mask-fade-t {
+    mask-image: linear-gradient(to top, black 60%, transparent);
+    -webkit-mask-image: linear-gradient(to top, black 60%, transparent);
+  }
+}

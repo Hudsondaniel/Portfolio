@@ -22,8 +22,8 @@ export const Navigation: React.FC = () => {
 			<div
 				className={`fixed inset-x-0 top-0 z-50 backdrop-blur  duration-200 border-b  ${
 					isIntersecting
-						? "bg-zinc-900/0 border-transparent"
-						: "bg-zinc-900/500  border-zinc-800 "
+						? "bg-score-bg/0 border-transparent"
+						: "bg-score-bg/80  border-zinc-800 "
 				}`}
 			>
 				<div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
