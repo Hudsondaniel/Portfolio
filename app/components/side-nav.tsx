@@ -2,15 +2,22 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Music, User, Zap, FolderOpen, Clock, Mail } from "lucide-react";
+import {
+	Disc3,
+	Feather,
+	Sliders,
+	Layers,
+	Sparkles,
+	Send,
+} from "lucide-react";
 
 const sections = [
-	{ id: "hero", label: "Overture", icon: Music },
-	{ id: "about", label: "Story", icon: User },
-	{ id: "skills", label: "Skills", icon: Zap },
-	{ id: "projects", label: "Works", icon: FolderOpen },
-	{ id: "timeline", label: "Journey", icon: Clock },
-	{ id: "contact", label: "Contact", icon: Mail },
+	{ id: "hero", label: "Overture", icon: Disc3 },
+	{ id: "about", label: "Story", icon: Feather },
+	{ id: "skills", label: "Skills", icon: Sliders },
+	{ id: "projects", label: "Works", icon: Layers },
+	{ id: "timeline", label: "Journey", icon: Sparkles },
+	{ id: "contact", label: "Contact", icon: Send },
 ];
 
 export default function SideNav() {

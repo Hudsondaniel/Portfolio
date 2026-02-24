@@ -79,9 +79,11 @@ export default function AboutSection() {
 							direction={i % 2 === 0 ? "left" : "right"}
 						>
 							<div className="group relative flex items-start gap-6 md:gap-8 p-6 md:p-8 rounded-2xl glass hover:border-score-accent/20 transition-all duration-500">
-								{/* Chapter number / note */}
+								{/* Chapter number / icon */}
 								<div className="flex-shrink-0 flex flex-col items-center gap-2">
-									<span className="text-3xl">{chapter.emoji}</span>
+									<div className="w-10 h-10 rounded-full flex items-center justify-center bg-score-surface border border-zinc-800">
+										{chapter.icon}
+									</div>
 									<span className="text-xs font-mono text-zinc-600">
 										0{i + 1}
 									</span>

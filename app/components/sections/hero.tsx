@@ -128,7 +128,7 @@ export default function HeroSection() {
 	return (
 		<section
 			id="hero"
-			className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden bg-score-bg"
+			className="relative flex flex-col items-center min-h-screen overflow-hidden bg-score-bg"
 		>
 			{/* Background glow */}
 			<div className="absolute inset-0 bg-hero-glow" />
@@ -139,46 +139,51 @@ export default function HeroSection() {
 			{/* Floating music notes */}
 			<FloatingNotes />
 
-			{/* Top line */}
-			<div className="hidden w-screen h-px md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-score-accent/30 to-zinc-300/0" />
-
-			{/* Main content */}
-			<div className="relative z-10 flex flex-col items-center gap-8 px-4">
+			{/* ——— Name block: pinned to upper-center ——— */}
+			<div className="relative z-10 flex flex-col items-center w-full pt-[18vh] sm:pt-[20vh] md:pt-[18vh]">
 				{/* Overture label */}
 				<motion.div
-					className="flex items-center gap-3 text-xs font-mono tracking-[0.4em] uppercase text-zinc-500"
+					className="flex items-center gap-3 text-[10px] font-mono tracking-[0.5em] uppercase text-zinc-600 mb-5"
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ delay: 0.3, duration: 0.8 }}
 				>
-					<span className="w-8 h-px bg-zinc-700" />
+					<span className="w-10 h-px bg-gradient-to-r from-transparent to-zinc-700" />
 					Overture
-					<span className="w-8 h-px bg-zinc-700" />
+					<span className="w-10 h-px bg-gradient-to-l from-transparent to-zinc-700" />
 				</motion.div>
 
-				{/* Name */}
+				{/* Decorative line above name */}
+				<div className="hidden w-[60vw] max-w-2xl h-px md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-score-accent/30 to-zinc-300/0 mb-6" />
+
+				{/* Name — centered and prominent */}
 				<motion.h1
-					className="text-5xl sm:text-7xl md:text-9xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-400 text-center cursor-default"
-					initial={{ opacity: 0, letterSpacing: "0.3em", lineHeight: "0%" }}
-					animate={{ opacity: 1, letterSpacing: "0.02em", lineHeight: "100%" }}
+					className="text-5xl sm:text-7xl md:text-[8rem] lg:text-[9rem] font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-500 text-center cursor-default leading-none"
+					initial={{ opacity: 0, letterSpacing: "0.3em", scale: 0.95 }}
+					animate={{ opacity: 1, letterSpacing: "0.01em", scale: 1 }}
 					transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
 				>
 					Hudson Daniel
 				</motion.h1>
 
+				{/* Decorative line below name */}
+				<div className="hidden w-[60vw] max-w-2xl h-px md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-score-accent/30 to-zinc-300/0 mt-6" />
+
 				{/* Subtitle */}
 				<motion.p
-					className="text-lg md:text-xl text-zinc-400 text-center max-w-xl font-light"
+					className="mt-6 text-base md:text-lg text-zinc-500 text-center max-w-lg font-light tracking-wide"
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ delay: 1.2, duration: 0.8 }}
 				>
-					Software Engineer · Music Producer · Piano Player
+					Software Engineer{" "}
+					<span className="text-score-accent/40">·</span> Music Producer{" "}
+					<span className="text-score-accent/40">·</span> Piano Player
 				</motion.p>
 
 				{/* Tagline */}
 				<motion.p
-					className="text-sm text-zinc-600 font-mono text-center"
+					className="mt-3 text-xs text-zinc-700 font-mono text-center tracking-wider"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: 1.8, duration: 0.8 }}
@@ -187,13 +192,10 @@ export default function HeroSection() {
 				</motion.p>
 			</div>
 
-			{/* Piano keyboard */}
-			<div className="relative z-10 mt-12 md:mt-16">
+			{/* Piano keyboard — pushed toward bottom */}
+			<div className="relative z-10 mt-auto mb-24">
 				<PianoKeyboard />
 			</div>
-
-			{/* Bottom line */}
-			<div className="hidden w-screen h-px md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-score-accent/30 to-zinc-300/0 mt-8" />
 
 			{/* Scroll indicator */}
 			<motion.button

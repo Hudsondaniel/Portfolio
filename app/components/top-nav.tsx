@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Music } from "lucide-react";
+import { Disc3 } from "lucide-react";
 
 const navLinks = [
 	{ id: "about", label: "About" },
@@ -63,14 +63,14 @@ export default function TopNav() {
 					<div className="glass border-b border-zinc-800/50">
 						<nav className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
 							{/* Logo / Home */}
-							<button
-								onClick={() => scrollTo("hero")}
-								className="flex items-center gap-2 text-zinc-300 hover:text-white transition-colors"
-								data-cursor="pointer"
-							>
-								<Music className="w-4 h-4 text-score-accent" />
-								<span className="text-sm font-display font-bold">HD</span>
-							</button>
+						<button
+							onClick={() => scrollTo("hero")}
+							className="flex items-center gap-2.5 text-zinc-300 hover:text-white transition-colors group"
+							data-cursor="pointer"
+						>
+							<Disc3 className="w-4 h-4 text-score-accent group-hover:rotate-180 transition-transform duration-700" strokeWidth={1.5} />
+							<span className="text-sm font-display font-bold tracking-wider">HD</span>
+						</button>
 
 							{/* Nav links */}
 							<div className="hidden md:flex items-center gap-1">
